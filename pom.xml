@@ -28,6 +28,9 @@
 		<dv.servlet-api>3.0.1</dv.servlet-api>
 		<dv.aspectj>1.8.2</dv.aspectj>
 		<dv.mysql-connector>5.1.30</dv.mysql-connector>
+		
+		<pv.compiler>3.1</pv.compiler>
+		<pv.tomcat>2.2</pv.tomcat>
 
 	</properties>
 
@@ -158,6 +161,13 @@
 
 	</dependencies>
 	<build>
+	
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<finalName>ccproject</finalName>
 		<plugins>
 			<plugin>
@@ -172,7 +182,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
+				<version>3.2</version>
 				<configuration>
 					<source>${jdk.version}</source>
 					<target>${jdk.version}</target>
