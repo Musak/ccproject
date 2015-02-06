@@ -23,7 +23,7 @@
 		<dv.slf4j>1.7.7</dv.slf4j>
 		<dv.logback>1.1.2</dv.logback>
 		<dv.usertype>3.1.0.GA</dv.usertype>
-		<dv.junit>3.8.1</dv.junit>
+		<dv.junit>4.12</dv.junit>
 		<dv.mockito>1.9.5</dv.mockito>
 		<dv.servlet-api>3.0.1</dv.servlet-api>
 		<dv.aspectj>1.8.2</dv.aspectj>
@@ -148,6 +148,11 @@
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjtools</artifactId>
 			<version>${dv.aspectj}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
 		</dependency>
 
 

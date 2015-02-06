@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+  <property resource="app.properties" />
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - Id:%X{requestId} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="FILE-Http" class="ch.qos.logback.core.FileAppender">
+    <file>${LogPath}http.log</file>
+    <append>true</append>
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level - Id:%X{requestId} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="FILE-Main" class="ch.qos.logback.core.FileAppender">
+    <file>${LogPath}main.log</file>
+    <append>true</append>
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - Id:%X{requestId} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="FILE-Controller" class="ch.qos.logback.core.FileAppender">
+    <file>${LogPath}controller.log</file>
+    <append>true</append>
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level Id:%X{requestId} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="FILE-Hibernate" class="ch.qos.logback.core.FileAppender">
+    <file>${LogPath}hibernate.log</file>
+    <append>true</append>
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - Id:%X{requestId} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  
+  <!-- controller logger for every controller -->
+  <logger name="controller" level="${LogLevel.controller}">
+    <appender-ref ref="FILE-Controller" />
+  </logger>
+
+  <!-- http request and response logger -->
+  <logger name="httpLogger" level="${LogLevel.httpLog}">
+    <appender-ref ref="FILE-Http" />
+  </logger>
+
+  <!-- hibernate logger -->
+  <logger name="org.hibernate" level="${LogLevel.hibernate}">
+    <appender-ref ref="FILE-Hibernate" />
+  </logger>
+
+  <!-- main logger -->
+  <logger name="com.epam.ecsvparser" level="${LogLevel.main}">
+    <appender-ref ref="FILE-Main" />
+  </logger>
+
+  <root level="warn">
+    <appender-ref ref="STDOUT" />
+  </root>
+</configuration>
