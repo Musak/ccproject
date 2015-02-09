@@ -25,7 +25,7 @@
 		<dv.usertype>3.1.0.GA</dv.usertype>
 		<dv.junit>4.12</dv.junit>
 		<dv.mockito>1.9.5</dv.mockito>
-		<dv.servlet-api>3.0.1</dv.servlet-api>
+		<dv.servlet-api>3.1.0</dv.servlet-api>
 		<dv.aspectj>1.8.2</dv.aspectj>
 		<dv.mysql-connector>5.1.30</dv.mysql-connector>
 		
