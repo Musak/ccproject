@@ -14,9 +14,9 @@ import com.epam.ccproject.web.service.FileProcessor;
 @Controller
 public class FileUploadController {
 
-	@Autowired
 	private FileProcessor fileProcessor;
 	
+	@Autowired
 	public FileUploadController(FileProcessor fileProcessor) {
 		this.fileProcessor = fileProcessor;
 	}
