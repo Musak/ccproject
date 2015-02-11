@@ -22,7 +22,7 @@ public class FileUploadController {
 	}
 
 	@ModelAttribute
-	public void uploader(@RequestParam MultipartFile file, RedirectAttributes attributes) {
+	public void uploader(@RequestParam("file") MultipartFile file, RedirectAttributes attributes) {
 		String resultMessage = fileProcessor.process(file);
 		
 		attributes.addFlashAttribute(resultMessage);
