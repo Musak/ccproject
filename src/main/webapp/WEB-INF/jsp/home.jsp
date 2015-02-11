@@ -4,7 +4,7 @@
 
 <div>
 	<h3>Homepage</h3>
-	<form method="POST" action="<c:url value="/uploadFile" />"
+	<form method="POST" action="<c:url value="/" />"
 		enctype="multipart/form-data">
 		CSV file to upload: <input type="file" name="file"><br /> <br />
 		<input type="submit" class="btn btn-default" value="Upload">

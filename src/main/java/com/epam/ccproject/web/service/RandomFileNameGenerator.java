@@ -23,7 +23,7 @@ public class RandomFileNameGenerator implements FileNameGenerator {
 		this.rootPath = rootPath;
 	}
 	
-	@Value("#{AppSettings[tempFolderName']}")
+	@Value("#{AppSettings['tempFolderName']}")
 	public void setTempFolderName(String tempFolderName) {
 		this.tempFolderName = tempFolderName;
 	}

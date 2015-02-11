@@ -17,8 +17,8 @@ public class WebappContextConfiguration {
 	private static final String TILES_XML_LOCATION = "/WEB-INF/tiles.xml";
 	private static final long MAX_FILE_UPLOAD_SIZE = 1000L;
 	
-	@Bean
-	public CommonsMultipartResolver commonsMultipartResolver() {
+	@Bean(name="multipartResolver")
+	public CommonsMultipartResolver multipartResolver() {
 		CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
 		commonsMultipartResolver.setMaxUploadSize(MAX_FILE_UPLOAD_SIZE);
 
