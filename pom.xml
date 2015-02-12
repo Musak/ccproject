@@ -28,7 +28,7 @@
 		<dv.servlet-api>3.1.0</dv.servlet-api>
 		<dv.aspectj>1.8.2</dv.aspectj>
 		<dv.mysql-connector>5.1.30</dv.mysql-connector>
-		
+
 		<pv.compiler>3.1</pv.compiler>
 		<pv.tomcat>2.2</pv.tomcat>
 
@@ -152,7 +152,7 @@
 			<artifactId>aspectjtools</artifactId>
 			<version>${dv.aspectj}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aspects</artifactId>
@@ -161,7 +161,7 @@
 
 	</dependencies>
 	<build>
-	
+
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -170,6 +170,24 @@
 		</resources>
 		<finalName>ccproject</finalName>
 		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>properties-maven-plugin</artifactId>
+				<version>1.0-alpha-1</version>
+				<executions>
+					<execution>
+						<phase>initialize</phase>
+						<goals>
+							<goal>read-project-properties</goal>
+						</goals>
+						<configuration>
+							<files>
+								<file>src/main/resources/app.properties</file>
+							</files>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>

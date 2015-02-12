@@ -44,9 +44,9 @@ public class SimpleFileProcessorTest {
 		when(fileNameGenerator.getFile()).thenReturn(myFile);
 		doThrow(IOException.class).when(multipartFile).transferTo(myFile);
 		
-		String answerMessage = processor.process(multipartFile);
+		Boolean answer = processor.process(multipartFile);
 		
-		assertEquals("Unable to uplod the file.", answerMessage);
+		assertFalse(answer);
 	}
 	
 	@Test
@@ -54,9 +54,9 @@ public class SimpleFileProcessorTest {
 		File myFile = new File("pathToFile.csv");
 		when(fileNameGenerator.getFile()).thenReturn(myFile);
 		
-		String answerMessage = processor.process(multipartFile);
+		Boolean answer = processor.process(multipartFile);
 		
-		assertEquals("File successfully uploaded!", answerMessage);
+		assertTrue(answer);
 	}
 	
 	

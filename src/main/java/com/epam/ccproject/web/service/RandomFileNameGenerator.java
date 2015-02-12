@@ -18,7 +18,7 @@ public class RandomFileNameGenerator implements FileNameGenerator {
 		this.identifierGenerator = identifierGenerator;
 	}
 
-	@Value("#{AppSettings['upload.home']}")
+	@Value("#{AppSettings['project.home']}/#{AppSettings['upload.home']}")
 	public void setRootPath(String rootPath) {
 		this.rootPath = rootPath;
 	}

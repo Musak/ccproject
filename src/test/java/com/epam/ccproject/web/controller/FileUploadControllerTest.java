@@ -1,13 +1,13 @@
 package com.epam.ccproject.web.controller;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -43,23 +43,12 @@ public class FileUploadControllerTest {
 	
 	@Test
 	public void shouldCallRedirectAttributesSetter() {
-		String RETURN_VALUE = "Uploaded";
-		Mockito.when(fileProcessor.process(Mockito.any(MultipartFile.class))).thenReturn(RETURN_VALUE);
+		Mockito.when(fileProcessor.process(Mockito.any(MultipartFile.class))).thenReturn(true);
 		
 		fileUploadController.uploader(multipartFile, attributes);
 		
-		Mockito.verify(attributes).addFlashAttribute(RETURN_VALUE);
+		Mockito.verify(attributes).addFlashAttribute("message","File successfully uploaded!");
+		Mockito.verify(attributes, Mockito.times(0)).addFlashAttribute("errorMessage","Unable to uplod the file.");
 	}
 	
-	@Test 
-	public void shouldCallRedirectAttributesWithArgumentCapture() {
-		String RETURN_VALUE = "Uploaded";
-		ArgumentCaptor<String> redirectAttributesValue = ArgumentCaptor.forClass(String.class);
-		Mockito.when(fileProcessor.process(Mockito.any(MultipartFile.class))).thenReturn(RETURN_VALUE);
-		
-		fileUploadController.uploader(multipartFile,attributes);
-		
-		Mockito.verify(attributes).addFlashAttribute(redirectAttributesValue.capture());
-		assertEquals(RETURN_VALUE, redirectAttributesValue.getValue());
-	}
 }

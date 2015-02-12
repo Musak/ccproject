@@ -15,20 +15,27 @@ import com.epam.ccproject.web.service.FileProcessor;
 public class FileUploadController {
 
 	private FileProcessor fileProcessor;
-	
+
 	@Autowired
 	public FileUploadController(FileProcessor fileProcessor) {
 		this.fileProcessor = fileProcessor;
 	}
 
 	@ModelAttribute
-	public void uploader(@RequestParam("file") MultipartFile file, RedirectAttributes attributes) {
-		String resultMessage = fileProcessor.process(file);
-		
-		attributes.addFlashAttribute(resultMessage);
+	public void uploader(@RequestParam("file") MultipartFile file,
+			RedirectAttributes attributes) {
+		boolean result = fileProcessor.process(file);
+
+		if (result) {
+			attributes.addFlashAttribute("message",
+					"File successfully uploaded!");
+		} else {
+			attributes.addFlashAttribute("errorMessage",
+					"Unable to uplod the file.");
+		}
 	}
-	
-	@RequestMapping(value="/", method=RequestMethod.POST)
+
+	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public String uploadFile() {
 		return "redirect:/";
 	}

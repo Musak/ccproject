@@ -17,15 +17,15 @@ public class SimpleFileProcessor implements FileProcessor {
 	}
 	
 	@Override
-	public String process(MultipartFile multipartFile) {
-		String answString;
+	public Boolean process(MultipartFile multipartFile) {
+		Boolean answ;
 		try {
 			multipartFile.transferTo(fileNameGenerator.getFile());
-			answString = "File successfully uploaded!";
+			answ = true;
 		} catch (IOException e) {
-			answString = "Unable to uplod the file.";
+			answ = false;
 		} 
 		
-		return answString;
+		return answ;
 	}
 }
