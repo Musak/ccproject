@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
@@ -16,7 +16,7 @@ import org.springframework.web.servlet.view.tiles2.TilesView;
 @EnableWebMvc
 @EnableAspectJAutoProxy
 @ComponentScan(basePackages= {"com.epam.ccproject"})
-@PropertySource("classpath:/app.properties")
+@ImportResource("classpath:*/root-context.xml")
 public class WebappContextConfiguration {
 
 	private static final String TILES_XML_LOCATION = "/WEB-INF/tiles.xml";

@@ -59,5 +59,16 @@ public class SimpleFileProcessorTest {
 		assertTrue(answer);
 	}
 	
+	@Test
+	public void shouldReturnErrorOnEmptyFile() {
+		File myFile = new File("pathToFile.csv");
+		when(fileNameGenerator.getFile()).thenReturn(myFile);
+		when(multipartFile.isEmpty()).thenReturn(true);
+		
+		Boolean answer = processor.process(multipartFile);
+		
+		assertFalse(answer);
+	}
+	
 	
 }

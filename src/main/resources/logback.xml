@@ -42,24 +42,19 @@
     </encoder>
   </appender>
 
-  
-  <!-- controller logger for every controller -->
   <logger name="controller" level="${LogLevel.controller}">
     <appender-ref ref="FILE-Controller" />
   </logger>
 
-  <!-- http request and response logger -->
-  <logger name="httpLogger" level="${LogLevel.httpLog}">
+  <logger name="http" level="${LogLevel.httpLog}">
     <appender-ref ref="FILE-Http" />
   </logger>
 
-  <!-- hibernate logger -->
-  <logger name="org.hibernate" level="${LogLevel.hibernate}">
+  <logger name="hibernate" level="${LogLevel.hibernate}">
     <appender-ref ref="FILE-Hibernate" />
   </logger>
 
-  <!-- main logger -->
-  <logger name="com.epam.ecsvparser" level="${LogLevel.main}">
+  <logger name="main" level="${LogLevel.main}">
     <appender-ref ref="FILE-Main" />
   </logger>
 

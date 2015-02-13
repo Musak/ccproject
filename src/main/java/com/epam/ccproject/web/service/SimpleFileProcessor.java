@@ -18,7 +18,9 @@ public class SimpleFileProcessor implements FileProcessor {
 	
 	@Override
 	public Boolean process(MultipartFile multipartFile) {
-		Boolean answ;
+		Boolean answ = false;
+		if(multipartFile.isEmpty()) return answ;
+		
 		try {
 			multipartFile.transferTo(fileNameGenerator.getFile());
 			answ = true;
