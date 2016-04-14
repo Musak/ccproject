@@ -10,14 +10,6 @@
     </encoder>
   </appender>
 
-  <appender name="FILE-Http" class="ch.qos.logback.core.FileAppender">
-    <file>${LogPath}http.log</file>
-    <append>true</append>
-    <encoder>
-      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level - Id:%X{requestId} - %msg%n</pattern>
-    </encoder>
-  </appender>
-
   <appender name="FILE-Main" class="ch.qos.logback.core.FileAppender">
     <file>${LogPath}main.log</file>
     <append>true</append>
@@ -25,34 +17,6 @@
       <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - Id:%X{requestId} - %msg%n</pattern>
     </encoder>
   </appender>
-
-  <appender name="FILE-Controller" class="ch.qos.logback.core.FileAppender">
-    <file>${LogPath}controller.log</file>
-    <append>true</append>
-    <encoder>
-      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level Id:%X{requestId} - %msg%n</pattern>
-    </encoder>
-  </appender>
-
-  <appender name="FILE-Hibernate" class="ch.qos.logback.core.FileAppender">
-    <file>${LogPath}hibernate.log</file>
-    <append>true</append>
-    <encoder>
-      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - Id:%X{requestId} - %msg%n</pattern>
-    </encoder>
-  </appender>
-
-  <logger name="controller" level="${LogLevel.controller}">
-    <appender-ref ref="FILE-Controller" />
-  </logger>
-
-  <logger name="http" level="${LogLevel.httpLog}">
-    <appender-ref ref="FILE-Http" />
-  </logger>
-
-  <logger name="hibernate" level="${LogLevel.hibernate}">
-    <appender-ref ref="FILE-Hibernate" />
-  </logger>
 
   <logger name="main" level="${LogLevel.main}">
     <appender-ref ref="FILE-Main" />
