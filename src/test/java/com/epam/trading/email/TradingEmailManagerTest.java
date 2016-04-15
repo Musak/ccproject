@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * Created by musak on 14/04/16.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/root-context.xml")
+@ContextConfiguration("/email-context.xml")
 public class TradingEmailManagerTest {
 
     @Autowired

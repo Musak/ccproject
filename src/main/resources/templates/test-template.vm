@@ -50,7 +50,7 @@
 
         <h3>TEST</h3>
         <p>
-            <b>Name:</b> $batchJobName <br>
+            <b>Name:</b> $name <br>
         </p>
 
     </body>

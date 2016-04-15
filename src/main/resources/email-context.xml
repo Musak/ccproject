@@ -7,7 +7,7 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
 		http://www.springframework.org/schema/context	http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <util:properties id="AppSettings" location="classpath:app.properties"/>
+    <util:properties id="props" location="classpath:app.properties"/>
     <context:component-scan base-package="com.epam.trading.email" />
 
     <bean id="emailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">

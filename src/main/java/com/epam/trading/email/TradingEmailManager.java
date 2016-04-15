@@ -2,6 +2,7 @@ package com.epam.trading.email;
 
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.MailParseException;
@@ -34,9 +35,9 @@ public class TradingEmailManager {
     private SimpleMailMessage simpleMailMessage;
 
     @Autowired
+    @Qualifier("velocityEngine")
     private VelocityEngine velocityEngine;
 
-    @Value("${trading.email.template.location}")
     private String emailTemplateLocation;
     private String attachmentFilePath;
 
@@ -86,12 +87,18 @@ public class TradingEmailManager {
             LOG.info("sendMail :: simpleMailMessage: " + simpleMailMessage);
 
             Map<String, Object> model = new HashMap<>();
-            model.put("name", "Name");
+            model.put("name", "My TEST Name");
 
-           // String text = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, getEmailTemplateLocation(), ENCODING, model);
-           // simpleMailMessage.setText(text);
-            simpleMailMessage.setText("aaaa");
-            mailSender.send(simpleMailMessage);
+            MimeMessage mimeMessage = mailSender.createMimeMessage();
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+            mimeMessageHelper.setFrom(simpleMailMessage.getFrom());
+            mimeMessageHelper.setTo(simpleMailMessage.getTo());
+            mimeMessageHelper.setSubject(simpleMailMessage.getSubject());
+
+            String text = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "templates/test-template.vm", ENCODING, model);
+            mimeMessage.setContent(text,"text/html");
+
+            mailSender.send(mimeMessage);
 
         } catch (Exception e) {
             throw new MailParseException(e);
