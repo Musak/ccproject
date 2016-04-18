@@ -2,9 +2,6 @@ package com.epam.trading.email;
 
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.MailParseException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -12,9 +9,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
-import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -26,6 +21,7 @@ import java.util.logging.Logger;
 public class TradingEmailManager {
 
     private static final String ENCODING = "utf-8";
+    private static final String TEXT_HTML = "text/html";
     private static Logger LOG = Logger.getLogger(TradingEmailManager.class.getSimpleName());
 
     @Autowired
@@ -35,12 +31,7 @@ public class TradingEmailManager {
     private SimpleMailMessage simpleMailMessage;
 
     @Autowired
-    @Qualifier("velocityEngine")
     private VelocityEngine velocityEngine;
-
-    private String emailTemplateLocation;
-    private String attachmentFilePath;
-
 
     public JavaMailSender getMailSender() {
         return mailSender;
@@ -58,22 +49,6 @@ public class TradingEmailManager {
         this.simpleMailMessage = simpleMailMessage;
     }
 
-    public String getAttachmentFilePath() {
-        return attachmentFilePath;
-    }
-
-    public void setAttachmentFilePath(String attachmentFilePath) {
-        this.attachmentFilePath = attachmentFilePath;
-    }
-
-    public String getEmailTemplateLocation() {
-        return emailTemplateLocation;
-    }
-
-    public void setEmailTemplateLocation(String emailTemplateLocation) {
-        this.emailTemplateLocation = emailTemplateLocation;
-    }
-
     public VelocityEngine getVelocityEngine() {
         return velocityEngine;
     }
@@ -82,21 +57,19 @@ public class TradingEmailManager {
         this.velocityEngine = velocityEngine;
     }
 
-    public void sendMail() {
+    public void sendMail(Map<String, Object> model, String template) {
         try {
             LOG.info("sendMail :: simpleMailMessage: " + simpleMailMessage);
 
-            Map<String, Object> model = new HashMap<>();
-            model.put("name", "My TEST Name");
-
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+
             mimeMessageHelper.setFrom(simpleMailMessage.getFrom());
             mimeMessageHelper.setTo(simpleMailMessage.getTo());
             mimeMessageHelper.setSubject(simpleMailMessage.getSubject());
 
-            String text = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "templates/test-template.vm", ENCODING, model);
-            mimeMessage.setContent(text,"text/html");
+            String text = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, template, ENCODING, model);
+            mimeMessage.setContent(text, TEXT_HTML);
 
             mailSender.send(mimeMessage);
 
